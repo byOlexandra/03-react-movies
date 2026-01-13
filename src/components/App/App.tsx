@@ -1,9 +1,11 @@
 // import { useState } from 'react'
-import './App.module.css'
+import style from './App.module.css'
 import SearchBar from '../SearchBar/SearchBar'
 
 export default function App() {
     return (
-        <SearchBar />
+        <div className={style.app}>
+            <SearchBar />
+        </div>
     )
 }
