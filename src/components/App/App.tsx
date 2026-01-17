@@ -1,25 +1,34 @@
 import { useState } from 'react'
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import style from './App.module.css'
 import SearchBar from '../SearchBar/SearchBar'
 import MovieGrid from '../MovieGrid/MovieGrid';
 import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { fetchMovies } from '../../services/movieService';
+import type { Movie } from '../../types/movie';
 
 
 export default function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [isQuery, setIsQuery] = useState(false)
+    const [movies, setMovies] = useState<Movie[]>([]);
 
     const handleSearch = async (query: string) => {
+        if (!query) return;
+
         setIsError(false);
+        setMovies([])
         setIsLoading(true);
-        setIsQuery(true);
+
         try {
             // HTTP-request
-            await fetchMovies(query);
+            const data = await fetchMovies(query);
+            if (data.length === 0) {
+                toast.error('No movies found for your request.');
+                return;
+            }
+            setMovies(data);
         } catch (error) {
             setIsError(true);
             console.error("Помилка при завантаженні:", error);
@@ -33,9 +42,8 @@ export default function App() {
         <div className={style.app}>
             <Toaster />
             <SearchBar onSubmit={handleSearch} />
-            {isLoading && <Loader />}
+            {isLoading ? <Loader /> : <MovieGrid items={movies} />}
             {isError && <ErrorMessage />}
-            {isQuery && <MovieGrid />}
         </div>
     )
 }
