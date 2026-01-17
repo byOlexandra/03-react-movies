@@ -1,6 +1,7 @@
 import css from "./MovieGrid.module.css";
+import type { Movie } from "../../types/movie";
 
-export default function MovieGrid() {
+export default function MovieGrid(Movie) {
     return (
         <ul className={css.grid}>
             <li>
