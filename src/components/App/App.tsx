@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import style from './App.module.css'
 import SearchBar from '../SearchBar/SearchBar'
@@ -13,8 +13,18 @@ export default function App() {
     const [isCameraIcon, setIsCameraIcon] = useState(true)
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [movies, setMovies] = useState<Movie[]>([]);
-    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
+    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+    const [movies, setMovies] = useState<Movie[]>(() => {
+        const savedMovies = localStorage.getItem('last-movies');
+        return savedMovies ? JSON.parse(savedMovies) : [];
+    });
+
+    useEffect(() => {
+        if (movies.length > 0) {
+            setIsCameraIcon(false)
+            localStorage.setItem('last-movies', JSON.stringify(movies))
+        }
+    }, [movies])
 
     const handleSearch = async (query: string) => {
         if (!query) return;

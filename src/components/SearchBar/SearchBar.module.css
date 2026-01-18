@@ -1,6 +1,6 @@
 .header {
     padding: 20px 0px;
-    background-color: rgba(114, 158, 234, 0.9);
+    background-color: rgba(107, 179, 227, 0.8);
     width: 100%;
     margin-bottom: 20px;
     box-shadow: inset 0 -15px 15px -10px rgba(162, 190, 239, 0.8);
@@ -24,13 +24,12 @@
     margin-right: 30px;
     font-size: 16px;
     font-weight: 500;
-    color: #2d2e2e;
+    color: #000000;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: text-decoration 0.3s ease;
 }
 
 .logo:hover {
-    color: #0e0e0e;
     text-decoration: underline;
 }
 
@@ -38,13 +37,12 @@
     margin-right: auto;
     font-size: 16px;
     font-weight: 500;
-    color: #2d2e2e;
+    color: #000000;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: text-decoration 0.3s ease;
 }
 
 .link:hover {
-    color: #0e0e0e;
     text-decoration: underline;
 }
 
@@ -57,7 +55,7 @@
 .input {
     padding: 10px 12px;
     font-size: 16px;
-    border: 2px solid #ccc;
+    border: 2px solid #2875c3;
     border-radius: 4px;
     width: 240px;
     background-color: transparent;
