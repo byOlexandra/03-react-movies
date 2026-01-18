@@ -12,9 +12,7 @@ body {
   left: 0;
   z-index: -1;
 
-  background: linear-gradient(125deg, #0a66c2, #074a8d, #0d7bf0, #053a6f);
-  background-size: 400% 400%;
-  animation: gradientFlow 15s ease infinite;
+  background-color: rgb(79, 113, 186); 
 }
 
 @keyframes gradientFlow {
@@ -28,5 +26,63 @@ body {
 
   100% {
     background-position: 0% 50%;
+  }
+}
+
+.icon {
+  display: block;
+  margin: 0 auto 30px;
+  fill: rgb(16, 20, 70);
+
+  animation: cameraPulse 3s infinite ease-in-out;
+  transform-origin: center;
+}
+
+.homeContent {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.homeTitle {
+  color: rgb(16, 20, 70); 
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+  
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+@keyframes cameraPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
   }
 }

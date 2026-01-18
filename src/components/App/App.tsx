@@ -10,6 +10,7 @@ import type { Movie } from '../../types/movie';
 import MovieModal from '../MovieModal/MovieModal';
 
 export default function App() {
+    const [isCameraIcon, setIsCameraIcon] = useState(true)
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [movies, setMovies] = useState<Movie[]>([]);
@@ -18,6 +19,7 @@ export default function App() {
     const handleSearch = async (query: string) => {
         if (!query) return;
 
+        setIsCameraIcon(false)
         setIsError(false);
         setMovies([])
         setIsLoading(true);
@@ -38,6 +40,17 @@ export default function App() {
         }
     }
 
+    const CameraIcon = () => (
+        <div className={style.homeContent}>
+            <svg className={style.icon} width={100} height={100}>
+                <use href="/src/images/sprite.svg#icon-video-camera"></use>
+            </svg>
+            <h1 className={style.homeTitle}>
+                Find your favorite movies here
+            </h1>
+        </div>
+    );
+
     const handleModalClose = () => {
         setSelectedMovie(null)
     }
@@ -48,6 +61,7 @@ export default function App() {
             <div>
                 <Toaster />
                 <SearchBar onSubmit={handleSearch} />
+                {isCameraIcon && <CameraIcon />}
                 {isLoading ? <Loader /> : <MovieGrid movies={movies} onSelect={setSelectedMovie} />}
                 {isError && <ErrorMessage />}
                 {selectedMovie && <MovieModal onClose={handleModalClose} movie={selectedMovie} />}
