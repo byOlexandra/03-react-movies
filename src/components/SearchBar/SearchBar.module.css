@@ -20,7 +20,22 @@
     gap: 12px;
 }
 
+.logo {
+    margin-right: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #2d2e2e;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.logo:hover {
+    color: #0e0e0e;
+    text-decoration: underline;
+}
+
 .link {
+    margin-right: auto;
     font-size: 16px;
     font-weight: 500;
     color: #2d2e2e;

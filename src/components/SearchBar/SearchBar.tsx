@@ -12,12 +12,21 @@ export default function SearchBar({ onSubmit }: SearchBarProps) {
             toast.error('Please enter your search query.');
             return
         }
-        onSubmit(movie)
+        localStorage.setItem('search-value', movie)
+        onSubmit(movie);
+    }
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.value === '') {
+            localStorage.removeItem('search-value')
+        }
     }
 
     return (
         <header className={styles.header}>
             <div className={styles.container}>
+                <a className={styles.logo}
+                    href="/index.html">Home</a>
                 <a className={styles.link}
                     href="https://www.themoviedb.org/"
                     target="_blank"
@@ -32,7 +41,8 @@ export default function SearchBar({ onSubmit }: SearchBarProps) {
                         name="query"
                         autoComplete="off"
                         placeholder="Search movies..."
-                        autoFocus
+                        defaultValue={localStorage.getItem('search-value') || ""}
+                        onChange={handleInputChange}
                     />
                     <button className={styles.button} type="submit">
                         Search
