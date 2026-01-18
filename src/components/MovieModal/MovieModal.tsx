@@ -9,6 +9,7 @@ interface MovieModalProps {
 }
 
 export default function MovieModal({ onClose, movie }: MovieModalProps) {
+    // Close on escape
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.code === 'Escape') {
@@ -21,10 +22,17 @@ export default function MovieModal({ onClose, movie }: MovieModalProps) {
         return () => (
             window.removeEventListener('keydown', handleKeyDown)
         )
-    }, [onClose])
+    }, [onClose]);
+
+    // Close on backdrop click
+    const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (event.target === event.currentTarget) {
+            onClose()
+        }
+    }
 
     return createPortal(
-        <div className={css.backdrop} role="dialog" aria-modal="true">
+        <div className={css.backdrop} role="dialog" aria-modal="true" onClick={handleBackdropClick}>
             <div className={css.modal}>
                 <button className={css.closeButton} aria-label="Close modal" onClick={onClose}>
                     &times;
