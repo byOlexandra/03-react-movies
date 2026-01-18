@@ -43,12 +43,15 @@ export default function App() {
     }
 
     return (
-        <div className={style.app}>
-            <Toaster />
-            <SearchBar onSubmit={handleSearch} />
-            {isLoading ? <Loader /> : <MovieGrid movies={movies} onSelect={setSelectedMovie} />}
-            {isError && <ErrorMessage />}
-            {selectedMovie && <MovieModal onClose={handleModalClose} movie={selectedMovie} />}
-        </div>
+        <>
+            <div className={style.background}></div>
+            <div>
+                <Toaster />
+                <SearchBar onSubmit={handleSearch} />
+                {isLoading ? <Loader /> : <MovieGrid movies={movies} onSelect={setSelectedMovie} />}
+                {isError && <ErrorMessage />}
+                {selectedMovie && <MovieModal onClose={handleModalClose} movie={selectedMovie} />}
+            </div>
+        </>
     )
 }
