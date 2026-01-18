@@ -36,7 +36,7 @@ export default function MovieModal({ onClose, movie }: MovieModalProps) {
             onClose()
         }
     }
-
+    const posterPath = movie.backdrop_path || movie.poster_path;
     return createPortal(
         <div className={css.backdrop} role="dialog" aria-modal="true" onClick={handleBackdropClick}>
             <div className={css.modal}>
@@ -44,7 +44,7 @@ export default function MovieModal({ onClose, movie }: MovieModalProps) {
                     &times;
                 </button>
                 <img
-                    src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                    src={`https://image.tmdb.org/t/p/original${posterPath}`}
                     alt={movie.title}
                     className={css.image}
                 />
