@@ -1,6 +1,7 @@
 import css from './MovieModal.module.css'
 import { createPortal } from 'react-dom'
 import type { Movie } from '../../types/movie';
+import { useEffect } from 'react';
 
 interface MovieModalProps {
     onClose: () => void;
@@ -8,6 +9,20 @@ interface MovieModalProps {
 }
 
 export default function MovieModal({ onClose, movie }: MovieModalProps) {
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.code === 'Escape') {
+                onClose()
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyDown)
+
+        return () => (
+            window.removeEventListener('keydown', handleKeyDown)
+        )
+    }, [onClose])
+
     return createPortal(
         <div className={css.backdrop} role="dialog" aria-modal="true">
             <div className={css.modal}>
@@ -26,7 +41,7 @@ export default function MovieModal({ onClose, movie }: MovieModalProps) {
                         <strong>Release Date:</strong> {movie.release_date}
                     </p>
                     <p>
-                        <strong>Rating:</strong> {movie.vote_average} / 10
+                        <strong>Rating:</strong> {(movie.vote_average).toFixed(1)} / 10
                     </p>
                 </div>
             </div>
