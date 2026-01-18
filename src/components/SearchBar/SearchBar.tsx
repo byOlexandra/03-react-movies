@@ -22,11 +22,20 @@ export default function SearchBar({ onSubmit }: SearchBarProps) {
         }
     }
 
+    const handleMoviesList = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (e) {
+            localStorage.removeItem('last-movies')
+        }
+    }
+
     return (
         <header className={styles.header}>
             <div className={styles.container}>
                 <a className={styles.logo}
-                    href="/index.html">Home</a>
+                    href="/index.html"
+                    onClick={handleMoviesList}
+                >
+                    Home</a>
                 <a className={styles.link}
                     href="https://www.themoviedb.org/"
                     target="_blank"

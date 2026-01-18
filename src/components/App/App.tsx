@@ -8,6 +8,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { fetchMovies } from '../../services/movieService';
 import type { Movie } from '../../types/movie';
 import MovieModal from '../MovieModal/MovieModal';
+import CameraIcon from '../CameraIcon/CameraIcon';
 
 export default function App() {
     const [isCameraIcon, setIsCameraIcon] = useState(true)
@@ -49,17 +50,6 @@ export default function App() {
             setIsLoading(false);
         }
     }
-
-    const CameraIcon = () => (
-        <div className={style.homeContent}>
-            <svg className={style.icon} width={100} height={100}>
-                <use href="/src/images/sprite.svg#icon-video-camera"></use>
-            </svg>
-            <h1 className={style.homeTitle}>
-                Find your favorite movies here
-            </h1>
-        </div>
-    );
 
     const handleModalClose = () => {
         setSelectedMovie(null)
