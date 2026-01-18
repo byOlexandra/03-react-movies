@@ -38,13 +38,17 @@ export default function App() {
         }
     }
 
+    const handleModalClose = () => {
+        setSelectedMovie(null)
+    }
+
     return (
         <div className={style.app}>
             <Toaster />
             <SearchBar onSubmit={handleSearch} />
             {isLoading ? <Loader /> : <MovieGrid movies={movies} onSelect={setSelectedMovie} />}
             {isError && <ErrorMessage />}
-            {selectedMovie && <MovieModal onClose={() => setSelectedMovie(null)} movie={selectedMovie} />}
+            {selectedMovie && <MovieModal onClose={handleModalClose} movie={selectedMovie} />}
         </div>
     )
 }

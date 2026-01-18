@@ -9,6 +9,13 @@ interface MovieModalProps {
 }
 
 export default function MovieModal({ onClose, movie }: MovieModalProps) {
+    // No-scroll
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = ''
+        }
+    }, [])
     // Close on escape
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
@@ -23,7 +30,6 @@ export default function MovieModal({ onClose, movie }: MovieModalProps) {
             window.removeEventListener('keydown', handleKeyDown)
         )
     }, [onClose]);
-
     // Close on backdrop click
     const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.target === event.currentTarget) {
