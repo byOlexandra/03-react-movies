@@ -7,12 +7,13 @@ import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { fetchMovies } from '../../services/movieService';
 import type { Movie } from '../../types/movie';
-
+import MovieModal from '../MovieModal/MovieModal';
 
 export default function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [movies, setMovies] = useState<Movie[]>([]);
+    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
 
     const handleSearch = async (query: string) => {
         if (!query) return;
@@ -37,13 +38,13 @@ export default function App() {
         }
     }
 
-
     return (
         <div className={style.app}>
             <Toaster />
             <SearchBar onSubmit={handleSearch} />
-            {isLoading ? <Loader /> : <MovieGrid items={movies} />}
+            {isLoading ? <Loader /> : <MovieGrid items={movies} onMovieClick={setSelectedMovie} />}
             {isError && <ErrorMessage />}
+            {selectedMovie && <MovieModal onClose={() => setSelectedMovie(null)} movie={selectedMovie} />}
         </div>
     )
 }
