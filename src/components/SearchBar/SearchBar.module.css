@@ -1,7 +1,8 @@
 .header {
     padding: 20px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 100%;
+    /* border-bottom: 1px solid #e0e0e0; */
     margin-bottom: 20px;
 }
 
@@ -18,13 +19,13 @@
 .link {
     font-size: 16px;
     font-weight: 500;
-    color: #0a66c2;
+    color: #2d2e2e;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .link:hover {
-    color: #004182;
+    color: #0e0e0e;
     text-decoration: underline;
 }
 
@@ -37,9 +38,27 @@
 .input {
     padding: 10px 12px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 4px;
     width: 240px;
+    background-color: transparent;
+
+    transition: all 0.3s ease;
+}
+
+.input::placeholder {
+    color: #ccc;
+}
+
+.input:hover {
+    outline: none;
+    border-color: #004182;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #004182;
+    box-shadow: 0 6px 20px rgba(10, 102, 194, 0.6);
 }
 
 .button {
@@ -50,8 +69,15 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+
+    transition: background-color 0.3s ease;
 }
 
 .button:hover {
     background-color: #004182;
+    transform: translateY(-2px);
+}
+
+.button:active {
+    box-shadow: 0 6px 20px rgba(10, 102, 194, 0.6);
 }
