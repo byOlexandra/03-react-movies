@@ -6,7 +6,7 @@ interface AxiosResponseProps {
 }
 
 export async function fetchMovies(query: string): Promise<Movie[]> {
-    const response = await axios<AxiosResponseProps>("https://api.themoviedb.org/3/search/movie", {
+    const response = await axios.get<AxiosResponseProps>("https://api.themoviedb.org/3/search/movie", {
         params: {
             query: query,
         },

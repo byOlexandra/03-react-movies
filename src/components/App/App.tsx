@@ -42,7 +42,7 @@ export default function App() {
         <div className={style.app}>
             <Toaster />
             <SearchBar onSubmit={handleSearch} />
-            {isLoading ? <Loader /> : <MovieGrid items={movies} onMovieClick={setSelectedMovie} />}
+            {isLoading ? <Loader /> : <MovieGrid movies={movies} onSelect={setSelectedMovie} />}
             {isError && <ErrorMessage />}
             {selectedMovie && <MovieModal onClose={() => setSelectedMovie(null)} movie={selectedMovie} />}
         </div>
